@@ -1,13 +1,23 @@
-from tokenize import String
+import string
 
+class NameException (Exception):
+    def __init__(self,message:string) :
+        self.message=message
+    
+        
+    
 
-def say_Moring(name):
-    if (name=="")or(not isinstance(name,str)):
-        raise Exception 
+def Greeting(name):
+    if (name==""):
+        raise NameException("name should not be empty !")
+    elif((not isinstance(name,str)) or (not name.isalpha()) ):
+        
+        raise NameException("please enter a valid name !")
+     
     else :
-        print("Good Moring "+name)
+        print("Good Morning "+name)
 
 try:
-    say_Moring(name)
-except Exception as e:
-    print("name should be string")
+    Greeting("")
+except NameException as e:
+    print(e.message)
